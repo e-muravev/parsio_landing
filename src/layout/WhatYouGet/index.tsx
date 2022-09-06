@@ -15,8 +15,8 @@ const WhatYouGetSection = () => {
       >
         What you get
       </Typography>
-      <Grid container>
-        <Grid xs={12} md={6} sx={{ paddingBottom: 10 }}>
+      <Grid container sx={{ paddingBottom: 10 }}>
+        <Grid xs={12} md={6}>
           <Typography
             variant="h4"
             sx={{ color: "rgba(56, 92, 237, 1)", fontWeight: 600, pb: 3 }}

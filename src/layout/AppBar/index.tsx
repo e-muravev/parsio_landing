@@ -80,7 +80,6 @@ const ResponsiveAppBar = () => {
             height: 32,
             display: "flex",
             alignItems: "center",
-            p: 2,
           }}
         >
           <ParsioLabel />
