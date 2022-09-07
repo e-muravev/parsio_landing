@@ -12,7 +12,7 @@ import { ParsioLabel } from "../../images";
 
 const pages = ["How it works", "Why it's useful", "What you get", "Contact us"];
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({ anchors }: any) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -25,10 +25,33 @@ const ResponsiveAppBar = () => {
     setAnchorElNav(null);
   };
 
+  const handleAnchorClick = (anchor: any) => {
+    handleCloseNavMenu();
+
+    anchor.scrollIntoView({ block: "center" });
+
+    const wrapper = document.querySelector("#whyitsuseful-wrapper");
+
+    if (anchor.id === "whatYouGet" || anchor.id === "contactUs") {
+      if (wrapper) {
+        wrapper.scrollLeft = 99999;
+      }
+    } else {
+      if (wrapper) {
+        wrapper.scrollLeft = 0;
+      }
+    }
+  };
+
   return (
     <AppBar
-      sx={{ backgroundColor: "white", boxShadow: "none" }}
-      position="static"
+      sx={{
+        backgroundColor: "white",
+        boxShadow: "none",
+        position: "fixed",
+        p: 3,
+      }}
+      position="fixed"
     >
       <Toolbar
         sx={{
@@ -41,6 +64,7 @@ const ResponsiveAppBar = () => {
       >
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
           <IconButton
+            sx={{ marginRight: "-8px" }}
             size="large"
             aria-label="account of current user"
             aria-controls="menu-appbar"
@@ -67,8 +91,11 @@ const ResponsiveAppBar = () => {
               display: { xs: "block", md: "none" },
             }}
           >
-            {pages.map((page) => (
-              <MenuItem key={page} onClick={handleCloseNavMenu}>
+            {pages.map((page, idx) => (
+              <MenuItem
+                key={page}
+                onClick={() => handleAnchorClick(anchors[idx])}
+              >
                 <Typography textAlign="center">{page}</Typography>
               </MenuItem>
             ))}
@@ -76,7 +103,7 @@ const ResponsiveAppBar = () => {
         </Box>
         <Box
           sx={{
-            width: 182,
+            width: { xs: 120, md: 182 },
             height: 32,
             display: "flex",
             alignItems: "center",
@@ -84,13 +111,23 @@ const ResponsiveAppBar = () => {
         >
           <ParsioLabel />
         </Box>
-
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
-          {pages.map((page) => (
-            <Typography sx={{ mr: 10 }}>{page}</Typography>
+          {pages.map((page, idx) => (
+            <Typography
+              onClick={() => handleAnchorClick(anchors[idx])}
+              sx={{
+                mr: 10,
+                cursor: "pointer",
+                "&:hover": {
+                  color: "rgba(43, 80, 228, 1)",
+                  textDecoration: "underline",
+                },
+              }}
+            >
+              {page}
+            </Typography>
           ))}
         </Box>
-
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
           <Button size="large" variant="contained">
             Sign up

@@ -4,14 +4,15 @@ import { Typography, Grid } from "@mui/material";
 const ContactUsSection: React.FC = () => {
   return (
     <Grid
+      id="contactUs"
       sx={{
-        mt: 15,
+        mt: 25,
+        p: 10,
+        mb: 15,
         backgroundColor: "rgb(242, 243, 245)",
-        height: "200px",
-        paddingLeft: "-16px",
       }}
       container
-      justifyContent="space-between"
+      justifyContent={{ xs: "center", md: "space-between" }}
       alignItems="center"
     >
       <Grid item>
@@ -19,13 +20,19 @@ const ContactUsSection: React.FC = () => {
           variant="h5"
           sx={{
             fontWeight: 700,
+            pb: 2,
           }}
         >
           Contact Us
         </Typography>
       </Grid>
       <Grid item>
-        <Grid container spacing={3} mr={10}>
+        <Grid
+          container
+          spacing={3}
+          mr={10}
+          justifyContent={{ xs: "center", md: "space-between" }}
+        >
           <Grid item>
             <Typography
               sx={{

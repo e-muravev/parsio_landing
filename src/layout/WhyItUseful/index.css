@@ -1,8 +1,8 @@
-#whyitsuseful::-webkit-scrollbar {
+#whyitsuseful-wrapper::-webkit-scrollbar {
   display: none;
 }
 
-#whyitsuseful {
+#whyitsuseful-wrapper {
   -ms-overflow-style: none; /* Edge */
   scrollbar-width: none; /* Firefox */
 }

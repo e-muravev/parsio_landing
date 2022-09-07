@@ -4,11 +4,11 @@ import { ScreenSvg } from "../../images";
 
 const Description: React.FC = () => {
   return (
-    <Grid container spacing={1} sx={{ paddingTop: 20 }}>
+    <Grid container spacing={5} sx={{ paddingTop: 25 }}>
       <Grid item xs={12} md={4} lg={4}>
         <Box
           sx={{
-            textAlign: "left",
+            textAlign: { xs: "center", md: "left" },
             position: "relative",
             top: "50%",
             transform: "translateY(-50%)",
@@ -23,10 +23,10 @@ const Description: React.FC = () => {
           >
             PARSIO
           </Typography>
+          <Typography>Make paper documents digital in two clicks!</Typography>
           <Typography>
-            Make paper documents digital in two clicks! Parsio uses OCR (Optical
-            Character Recognition) based on AI algorithms and customizable
-            templates.
+            Parsio uses OCR (Optical Character Recognition) based on AI
+            algorithms and customizable templates.
           </Typography>
         </Box>
       </Grid>

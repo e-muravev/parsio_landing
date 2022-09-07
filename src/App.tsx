@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import ResponsiveAppBar from "./layout/AppBar";
 import { ThemeProvider } from "@emotion/react";
@@ -17,6 +17,9 @@ import ContactUsSection from "./layout/ContactUs";
 const theme = createTheme({
   typography: {
     fontFamily: "Montserrat, sans-serif",
+    allVariants: {
+      color: "rgba(82,73,73,1)",
+    },
   },
   components: {
     MuiButton: {
@@ -25,26 +28,49 @@ const theme = createTheme({
           textTransform: "none",
           backgroundColor: "rgb(43, 80, 228)",
           color: "white",
+          minWidth: 160,
+          minHeight: 48,
         },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: { height: 48 },
       },
     },
   },
 });
 
+let anchors: any = [];
+
 function App() {
+  useEffect(() => {
+    const howItWorks = document.querySelector("#howItWorks");
+    const whyItsUseful = document.querySelector("#whyItsUseful");
+    const whatYouGet = document.querySelector("#whatYouGet");
+    const contactUs = document.querySelector("#contactUs");
+
+    anchors.push(howItWorks);
+    anchors.push(whyItsUseful);
+    anchors.push(whatYouGet);
+    anchors.push(contactUs);
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth={false}>
-        <ResponsiveAppBar />
-        <Description />
-        <HowItWorksSection />
-        <RecognitionWaysSection />
-        <WhyItsUsefulSection />
-        <WhatYouGetSection />
-        <UpdatesSection />
-        <SubscribeSection />
-        <ContactUsSection />
+      <Container maxWidth="xl">
+        <ResponsiveAppBar anchors={anchors} />
+        <Box sx={{ maxWidth: 1536, margin: "0 auto" }}>
+          <Description />
+          <HowItWorksSection />
+          <RecognitionWaysSection />
+          <WhyItsUsefulSection />
+          <WhatYouGetSection />
+          <UpdatesSection />
+          <SubscribeSection />
+          <ContactUsSection />
+        </Box>
       </Container>
     </ThemeProvider>
   );

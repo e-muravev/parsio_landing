@@ -8,10 +8,13 @@ import {
 } from "../../images";
 import "./index.css";
 
-function isInViewport(element: HTMLElement) {
+function isInCenterOfViewport(element: HTMLElement) {
   const rect = element.getBoundingClientRect();
+
   return (
     rect.top >= 0 &&
+    rect.top + rect.height / 2 - 50 <=
+      (window.innerHeight / 2 || document.documentElement.clientHeight / 2) &&
     rect.left >= 0 &&
     rect.bottom <=
       (window.innerHeight || document.documentElement.clientHeight) &&
@@ -21,6 +24,7 @@ function isInViewport(element: HTMLElement) {
 
 const WhyItsUsefulSection: React.FC = () => {
   const [wrapperHeight, setWrapperHeight] = useState<number | undefined>();
+  const [stickyTop, setStickyTop] = useState<number | undefined>();
   const ref = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
@@ -37,7 +41,14 @@ const WhyItsUsefulSection: React.FC = () => {
 
   useEffect(() => {
     if (ref.current) {
-      setWrapperHeight(ref.current.scrollWidth - 2 * ref.current.clientWidth);
+      setWrapperHeight(ref.current.scrollWidth);
+
+      setStickyTop(
+        (window.innerHeight
+          ? document.documentElement.clientHeight / 2
+          : document.documentElement.clientHeight / 2) -
+          ref.current.getBoundingClientRect().height / 2
+      );
     }
   }, [setWrapperHeight]);
 
@@ -47,8 +58,9 @@ const WhyItsUsefulSection: React.FC = () => {
     let scrollY = 0;
 
     window.addEventListener("scroll", () => {
+      // console.log(ref.current?.getBoundingClientRect());
       if (ref.current) {
-        if (isInViewport(ref.current)) {
+        if (isInCenterOfViewport(ref.current)) {
           const st = window.pageYOffset || document.documentElement.scrollTop;
           if (st > lastScrollTop) {
             //downscroll code
@@ -80,33 +92,32 @@ const WhyItsUsefulSection: React.FC = () => {
   }, []);
 
   return (
-    <Box mt={15}>
-      <Typography
-        variant="h3"
-        sx={{
-          fontWeight: 700,
-          color: "rgba(82, 73, 73, 1)",
-          textAlign: "center",
-          paddingBottom: 10,
-        }}
-      >
-        Why it's useful
-      </Typography>
+    <Box id="whyItsUseful" mt={{ xs: 20, md: 40 }}>
       <Box sx={{ height: wrapperHeight }}>
-        <Box sx={{ position: "sticky", top: "25vh" }}>
+        <Typography
+          variant="h3"
+          sx={{
+            fontWeight: 700,
+            color: "rgba(82, 73, 73, 1)",
+            textAlign: "center",
+            paddingBottom: 10,
+          }}
+        >
+          Why it's useful
+        </Typography>
+        <Box sx={{ position: "sticky", top: stickyTop }}>
           <Grid
-            id="whyitsuseful"
+            id="whyitsuseful-wrapper"
             ref={ref}
             container
             flexWrap="nowrap"
             sx={{
               overflowX: "scroll",
-              padding: { lg: 10 },
             }}
           >
             <Grid
               item
-              mr={5}
+              mr={10}
               xs={12}
               flexShrink="0"
               sx={{
@@ -146,7 +157,7 @@ const WhyItsUsefulSection: React.FC = () => {
             </Grid>
             <Grid
               item
-              mr={5}
+              mr={10}
               xs={12}
               flexShrink="0"
               sx={{
@@ -185,7 +196,7 @@ const WhyItsUsefulSection: React.FC = () => {
             </Grid>
             <Grid
               item
-              mr={5}
+              mr={10}
               xs={12}
               flexShrink="0"
               sx={{
@@ -224,7 +235,6 @@ const WhyItsUsefulSection: React.FC = () => {
             </Grid>
             <Grid
               item
-              mr={5}
               xs={12}
               flexShrink="0"
               sx={{
