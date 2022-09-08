@@ -24,7 +24,9 @@ const UpdatesSection: React.FC = () => {
         We are launching beta testing for an AI algorithm to recognize document
         on a fly without using templates
       </Typography>
-      <Typography sx={{ pt: 5 }}>SVG here</Typography>
+      <Typography sx={{ pt: 5, fontWeight: 800, textDecoration: "underline" }}>
+        SVG here
+      </Typography>
     </Box>
   );
 };

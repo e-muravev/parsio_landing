@@ -10,6 +10,7 @@ const ContactUsSection: React.FC = () => {
         p: 10,
         mb: 15,
         backgroundColor: "rgb(242, 243, 245)",
+        flexGrow: 1,
       }}
       container
       justifyContent={{ xs: "center", md: "space-between" }}
@@ -20,7 +21,7 @@ const ContactUsSection: React.FC = () => {
           variant="h5"
           sx={{
             fontWeight: 700,
-            pb: 2,
+            p: 1,
           }}
         >
           Contact Us
@@ -30,6 +31,9 @@ const ContactUsSection: React.FC = () => {
         <Grid
           container
           spacing={3}
+          sx={{
+            p: 1,
+          }}
           mr={10}
           justifyContent={{ xs: "center", md: "space-between" }}
         >

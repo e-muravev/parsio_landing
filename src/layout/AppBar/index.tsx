@@ -28,7 +28,11 @@ const ResponsiveAppBar = ({ anchors }: any) => {
   const handleAnchorClick = (anchor: any) => {
     handleCloseNavMenu();
 
-    anchor.scrollIntoView({ block: "center" });
+    const Y_OFFSET = 150;
+    window.scrollBy({
+      top: anchor.getBoundingClientRect().top - Y_OFFSET,
+      left: 0,
+    });
 
     const wrapper = document.querySelector("#whyitsuseful-wrapper");
 
@@ -114,7 +118,7 @@ const ResponsiveAppBar = ({ anchors }: any) => {
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
           {pages.map((page, idx) => (
             <Typography
-              onClick={() => handleAnchorClick(anchors[idx])}
+              key={page}
               sx={{
                 mr: 10,
                 cursor: "pointer",
@@ -123,6 +127,7 @@ const ResponsiveAppBar = ({ anchors }: any) => {
                   textDecoration: "underline",
                 },
               }}
+              onClick={() => handleAnchorClick(anchors[idx])}
             >
               {page}
             </Typography>
