@@ -17,12 +17,12 @@ function isInCenterOfViewport(element: HTMLElement) {
         Math.floor(
           window.innerHeight / 2 || document.documentElement.clientHeight / 2
         ) -
-          10 &&
+          100 &&
       Math.floor(rect.top + rect.height / 2) <
         Math.floor(
           window.innerHeight / 2 || document.documentElement.clientHeight / 2
         ) +
-          10) ||
+          100) ||
     (Math.floor(rect.top + rect.height / 2) ===
       Math.floor(
         window.innerHeight / 2 || document.documentElement.clientHeight / 2
@@ -145,6 +145,7 @@ const WhyItsUsefulSection: React.FC = () => {
               flexWrap="nowrap"
               sx={{
                 overflowX: "scroll",
+                pointerEvents: "none",
               }}
             >
               <Grid

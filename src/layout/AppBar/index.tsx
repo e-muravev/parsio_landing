@@ -25,11 +25,15 @@ const ResponsiveAppBar = ({ anchors }: any) => {
     setAnchorElNav(null);
   };
 
+  const handleSignUpClick = () => {
+    window.location.replace("https://in.parsio.app/signup");
+  };
+
   const handleAnchorClick = (anchor: any, page: string) => {
     handleCloseNavMenu();
 
     if (page === "Sign Up") {
-      window.location.replace("https://in.parsio.app/signup");
+      handleSignUpClick();
       return;
     }
 
@@ -140,7 +144,7 @@ const ResponsiveAppBar = ({ anchors }: any) => {
           ))}
         </Box>
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
-          <Button size="large" variant="contained">
+          <Button onClick={handleSignUpClick} size="large" variant="contained">
             Sign up
           </Button>
         </Box>
