@@ -19,11 +19,19 @@ const HowItWorksSection: React.FC = () => {
       <Grid container spacing={10} justifyContent="center">
         <Grid item xs={12} md={3}>
           <Box pb={2} sx={{ textAlign: { xs: "center", md: "left" } }}>
-            <img
-              width={"40%"}
-              src="https://d2kq0urxkarztv.cloudfront.net/5e8af2cedd55554b639f4f36/2213853/upload-4766d72b-5a21-485f-b148-f808029b726f.png?e=webp&nll=true"
-              alt="/"
-            />
+            <Box
+              sx={{
+                maxWidth: { xs: "270px", md: "none" },
+                width: "40%",
+                margin: { xs: "0 auto", md: "0" },
+              }}
+            >
+              <img
+                width={"100%"}
+                src="https://d2kq0urxkarztv.cloudfront.net/5e8af2cedd55554b639f4f36/2213853/upload-4766d72b-5a21-485f-b148-f808029b726f.png?e=webp&nll=true"
+                alt="/"
+              />
+            </Box>
           </Box>
           <Box pl={1} sx={{ textAlign: { xs: "center", md: "left" } }}>
             <Typography sx={{ fontWeight: 600, paddingBottom: 2 }}>
@@ -41,11 +49,19 @@ const HowItWorksSection: React.FC = () => {
           sx={{ textAlign: { xs: "center", md: "left" } }}
         >
           <Box pb={2}>
-            <img
-              width={"40%"}
-              src="https://d2kq0urxkarztv.cloudfront.net/5e8af2cedd55554b639f4f36/2213853/upload-2dec82ee-d949-4549-a35c-dce42d8848b5.png?e=webp&nll=true"
-              alt="/"
-            />
+            <Box
+              sx={{
+                maxWidth: { xs: "270px", md: "none" },
+                width: "40%",
+                margin: { xs: "0 auto", md: "0" },
+              }}
+            >
+              <img
+                width={"100%"}
+                src="https://d2kq0urxkarztv.cloudfront.net/5e8af2cedd55554b639f4f36/2213853/upload-2dec82ee-d949-4549-a35c-dce42d8848b5.png?e=webp&nll=true"
+                alt="/"
+              />
+            </Box>
           </Box>
           <Box pl={1} sx={{ textAlign: { xs: "center", md: "left" } }}>
             <Typography sx={{ fontWeight: 600, paddingBottom: 2 }}>
@@ -58,11 +74,19 @@ const HowItWorksSection: React.FC = () => {
         </Grid>
         <Grid item xs={12} md={3}>
           <Box pb={2} sx={{ textAlign: { xs: "center", md: "left" } }}>
-            <img
-              width={"40%"}
-              src="https://d2kq0urxkarztv.cloudfront.net/5e8af2cedd55554b639f4f36/2213853/upload-1a7052b1-849a-47b0-9e56-47501db1f491.png?e=webp&nll=true"
-              alt="/"
-            />
+            <Box
+              sx={{
+                maxWidth: { xs: "270px", md: "none" },
+                width: "40%",
+                margin: { xs: "0 auto", md: "0" },
+              }}
+            >
+              <img
+                width={"100%"}
+                src="https://d2kq0urxkarztv.cloudfront.net/5e8af2cedd55554b639f4f36/2213853/upload-1a7052b1-849a-47b0-9e56-47501db1f491.png?e=webp&nll=true"
+                alt="/"
+              />
+            </Box>
           </Box>
           <Box pl={1} sx={{ textAlign: { xs: "center", md: "left" } }}>
             <Typography sx={{ fontWeight: 600, paddingBottom: 2 }}>
@@ -81,6 +105,7 @@ const HowItWorksSection: React.FC = () => {
               paddingBottom: "28.5px",
 
               margin: { xs: "0 auto", md: "0" },
+              maxWidth: { xs: "270px", md: "none" },
             }}
           >
             <ExtractIcon />

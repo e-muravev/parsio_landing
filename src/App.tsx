@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import ResponsiveAppBar from "./layout/AppBar";
 import { ThemeProvider } from "@emotion/react";
@@ -54,6 +54,10 @@ function App() {
     anchors.push(whyItsUseful);
     anchors.push(whatYouGet);
     anchors.push(contactUs);
+  }, []);
+
+  useEffect(() => {
+    window.screen.orientation.lock("portrait");
   }, []);
 
   return (

@@ -11,15 +11,6 @@ import "./index.css";
 function isInCenterOfViewport(element: HTMLElement) {
   const rect = element.getBoundingClientRect();
 
-  console.log("1", Math.floor(rect.top + rect.height / 2));
-  console.log(
-    "2",
-    Math.floor(
-      window.innerHeight / 2 || document.documentElement.clientHeight / 2
-    )
-  );
-  // console.log(rect.top);
-
   return (
     (rect.top >= 0 &&
       Math.floor(rect.top + rect.height / 2) >
@@ -49,6 +40,7 @@ const WhyItsUsefulSection: React.FC = () => {
   const ref = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
+    // reset scroll after page reload
     const scrollToTop = function () {
       window.scrollTo(0, 0);
     };
@@ -61,22 +53,33 @@ const WhyItsUsefulSection: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (ref.current) {
-      const stickyTop =
-        (window.innerHeight
-          ? document.documentElement.clientHeight / 2
-          : document.documentElement.clientHeight / 2) -
-        ref.current.getBoundingClientRect().height / 2;
+    // set sticky wpapper params
+    const setStickyWrapperParams = () => {
+      if (ref.current) {
+        const stickyTop =
+          (window.innerHeight
+            ? document.documentElement.clientHeight / 2
+            : document.documentElement.clientHeight / 2) -
+          ref.current.getBoundingClientRect().height / 2;
 
-      setWrapperHeight(
-        ref.current.scrollWidth -
-          ref.current.clientWidth +
-          window.innerHeight -
-          stickyTop
-      );
-      setStickyTop(stickyTop);
-    }
-  }, [setWrapperHeight]);
+        setWrapperHeight(
+          ref.current.scrollWidth -
+            ref.current.clientWidth +
+            window.innerHeight -
+            stickyTop
+        );
+        setStickyTop(stickyTop);
+      }
+    };
+
+    setStickyWrapperParams();
+
+    window.addEventListener("resize", setStickyWrapperParams);
+
+    return () => {
+      window.removeEventListener("resize", setStickyWrapperParams);
+    };
+  }, []);
 
   useEffect(() => {
     // horizontal scrolling animation dependent to window scroll
@@ -88,14 +91,11 @@ const WhyItsUsefulSection: React.FC = () => {
         if (isInCenterOfViewport(ref.current)) {
           const st = window.pageYOffset || document.documentElement.scrollTop;
 
-          console.log("scrollY", window.scrollY);
           if (st > lastScrollTop) {
             //downscroll code
             if (scrollY && scrollY !== window.scrollY) {
               ref.current.scrollLeft =
                 ref.current.scrollLeft + (window.scrollY - scrollY);
-
-              // console.log("scrollLeft", ref.current.scrollLeft);
             }
 
             scrollY = window.scrollY;
@@ -121,9 +121,6 @@ const WhyItsUsefulSection: React.FC = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  // console.log("wrapperHeight", wrapperHeight);
-  // console.log("stickyTop", stickyTop);
 
   return (
     <Box id="whyItsUseful" mt={{ xs: 20, md: 40 }}>

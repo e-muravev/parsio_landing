@@ -25,24 +25,30 @@ const ResponsiveAppBar = ({ anchors }: any) => {
     setAnchorElNav(null);
   };
 
-  const handleAnchorClick = (anchor: any) => {
+  const handleAnchorClick = (anchor: any, page: string) => {
     handleCloseNavMenu();
 
-    const Y_OFFSET = 150;
+    if (page === "Sign Up") {
+      window.location.replace("https://in.parsio.app/signup");
+      return;
+    }
+
+    const Y_OFFSET = 150; // we need it because scroll doesn't properly work
+
     window.scrollBy({
       top: anchor.getBoundingClientRect().top - Y_OFFSET,
       left: 0,
     });
 
-    const wrapper = document.querySelector("#whyitsuseful-wrapper");
+    const stickyWrapper = document.querySelector("#whyitsuseful-wrapper");
 
     if (anchor.id === "whatYouGet" || anchor.id === "contactUs") {
-      if (wrapper) {
-        wrapper.scrollLeft = 99999;
+      if (stickyWrapper) {
+        stickyWrapper.scrollLeft = 99999;
       }
     } else {
-      if (wrapper) {
-        wrapper.scrollLeft = 0;
+      if (stickyWrapper) {
+        stickyWrapper.scrollLeft = 0;
       }
     }
   };
@@ -95,10 +101,10 @@ const ResponsiveAppBar = ({ anchors }: any) => {
               display: { xs: "block", md: "none" },
             }}
           >
-            {pages.map((page, idx) => (
+            {pages.concat(["Sign Up"]).map((page, idx) => (
               <MenuItem
                 key={page}
-                onClick={() => handleAnchorClick(anchors[idx])}
+                onClick={() => handleAnchorClick(anchors[idx], page)}
               >
                 <Typography textAlign="center">{page}</Typography>
               </MenuItem>
@@ -127,7 +133,7 @@ const ResponsiveAppBar = ({ anchors }: any) => {
                   textDecoration: "underline",
                 },
               }}
-              onClick={() => handleAnchorClick(anchors[idx])}
+              onClick={() => handleAnchorClick(anchors[idx], page)}
             >
               {page}
             </Typography>
