@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/parsio_landing/static/css/main.6bd3e9ef.css",
-    "main.js": "/parsio_landing/static/js/main.2b15cd2e.js",
+    "main.js": "/parsio_landing/static/js/main.60a61257.js",
     "static/js/787.bd8a3262.chunk.js": "/parsio_landing/static/js/787.bd8a3262.chunk.js",
     "index.html": "/parsio_landing/index.html",
     "main.6bd3e9ef.css.map": "/parsio_landing/static/css/main.6bd3e9ef.css.map",
-    "main.2b15cd2e.js.map": "/parsio_landing/static/js/main.2b15cd2e.js.map",
+    "main.60a61257.js.map": "/parsio_landing/static/js/main.60a61257.js.map",
     "787.bd8a3262.chunk.js.map": "/parsio_landing/static/js/787.bd8a3262.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6bd3e9ef.css",
-    "static/js/main.2b15cd2e.js"
+    "static/js/main.60a61257.js"
   ]
 }
