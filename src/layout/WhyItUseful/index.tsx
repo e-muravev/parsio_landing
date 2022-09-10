@@ -8,7 +8,9 @@ import {
 } from "../../images";
 import "./index.css";
 
-function isInCenterOfViewport(element: HTMLElement) {
+function isInCenterOfViewport(element: HTMLElement | null) {
+  if (!element) return;
+
   const rect = element.getBoundingClientRect();
 
   return (
@@ -17,12 +19,12 @@ function isInCenterOfViewport(element: HTMLElement) {
         Math.floor(
           window.innerHeight / 2 || document.documentElement.clientHeight / 2
         ) -
-          100 &&
+          10 &&
       Math.floor(rect.top + rect.height / 2) <
         Math.floor(
           window.innerHeight / 2 || document.documentElement.clientHeight / 2
         ) +
-          100) ||
+          10) ||
     (Math.floor(rect.top + rect.height / 2) ===
       Math.floor(
         window.innerHeight / 2 || document.documentElement.clientHeight / 2
@@ -83,34 +85,60 @@ const WhyItsUsefulSection: React.FC = () => {
 
   useEffect(() => {
     // horizontal scrolling animation dependent to window scroll
-    let lastScrollTop = 0;
-    let scrollY = 0;
+    let previousWindowScrollTop = 0;
+    let previousWindowScrollY = 0;
+
+    const scrollHorizontaly = () => {
+      const windowScrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      if (ref.current) {
+        if (windowScrollTop > previousWindowScrollTop) {
+          //downscroll code
+          if (
+            previousWindowScrollY &&
+            previousWindowScrollY !== window.scrollY
+          ) {
+            ref.current.scrollLeft =
+              ref.current.scrollLeft + (window.scrollY - previousWindowScrollY); // scrollLeft + window scroll step
+          }
+
+          previousWindowScrollY = window.scrollY;
+        } else {
+          // upscroll code
+          if (
+            previousWindowScrollY &&
+            previousWindowScrollY !== window.scrollY
+          ) {
+            ref.current.scrollLeft =
+              ref.current.scrollLeft - (previousWindowScrollY - window.scrollY); // scrollLeft - window scroll step
+          }
+
+          previousWindowScrollY = window.scrollY;
+          previousWindowScrollTop = windowScrollTop <= 0 ? 0 : windowScrollTop; // For Mobile or negative scrolling
+        }
+      }
+    };
 
     const handleScroll = () => {
       if (ref.current) {
         if (isInCenterOfViewport(ref.current)) {
-          const st = window.pageYOffset || document.documentElement.scrollTop;
-
-          if (st > lastScrollTop) {
-            //downscroll code
-            if (scrollY && scrollY !== window.scrollY) {
-              ref.current.scrollLeft =
-                ref.current.scrollLeft + (window.scrollY - scrollY);
-            }
-
-            scrollY = window.scrollY;
-          } else {
-            // upscroll code
-            if (scrollY && scrollY !== window.scrollY) {
-              ref.current.scrollLeft =
-                ref.current.scrollLeft - (scrollY - window.scrollY);
-            }
-
-            scrollY = window.scrollY;
-          }
-          lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+          scrollHorizontaly();
         } else {
-          scrollY = 0;
+          if (
+            ref.current.scrollLeft === 0 ||
+            ref.current.scrollLeft ===
+              ref.current.scrollWidth - ref.current.clientWidth
+          ) {
+            previousWindowScrollY = 0;
+            previousWindowScrollTop = 0;
+            return;
+          }
+          // Sometime scroll is to fast (big step) that sticky container is not in center of viewport
+          // and this bit step doesn't apply to horizontal scroll of sticky container
+          // So we need to apply it by additional checking
+          // If we miss some scroll we need to call scrollHorizontaly until sticky container scroll is located at  very start or very end
+          scrollHorizontaly();
         }
       }
     };
