@@ -30,7 +30,7 @@ const Description: React.FC = () => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item xs={12} md={8} lg={8}>
+      <Grid item xs={12} md={8}>
         <Box sx={{ position: "relative" }}>
           <img
             style={{ width: "100%" }}

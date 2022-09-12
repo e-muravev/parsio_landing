@@ -30,6 +30,21 @@ const ResponsiveAppBar = ({ anchors }: any) => {
   };
 
   const handleAnchorClick = (anchor: any, page: string) => {
+    const Y_OFFSET = 150; // we need it because scroll doesn't properly work
+    const stickyWrapper = document.querySelector("#whyitsuseful-wrapper");
+
+    const resetStickyWrapperHorizontalScroll = () => {
+      if (anchor.id === "whatYouGet" || anchor.id === "contactUs") {
+        if (stickyWrapper) {
+          stickyWrapper.scrollLeft = 99999;
+        }
+      } else {
+        if (stickyWrapper) {
+          stickyWrapper.scrollLeft = 0;
+        }
+      }
+    };
+
     handleCloseNavMenu();
 
     if (page === "Sign Up") {
@@ -37,24 +52,12 @@ const ResponsiveAppBar = ({ anchors }: any) => {
       return;
     }
 
-    const Y_OFFSET = 150; // we need it because scroll doesn't properly work
-
     window.scrollBy({
       top: anchor.getBoundingClientRect().top - Y_OFFSET,
       left: 0,
     });
 
-    const stickyWrapper = document.querySelector("#whyitsuseful-wrapper");
-
-    if (anchor.id === "whatYouGet" || anchor.id === "contactUs") {
-      if (stickyWrapper) {
-        stickyWrapper.scrollLeft = 99999;
-      }
-    } else {
-      if (stickyWrapper) {
-        stickyWrapper.scrollLeft = 0;
-      }
-    }
+    resetStickyWrapperHorizontalScroll();
   };
 
   return (
