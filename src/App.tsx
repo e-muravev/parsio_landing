@@ -60,6 +60,17 @@ function App() {
     window.screen.orientation.lock("portrait");
   }, []);
 
+  useEffect(() => {
+    // reset scroll after page reload
+    const scrollToTop = () => window.scrollTo(0, 0);
+
+    window.addEventListener("beforeunload", scrollToTop);
+
+    return () => {
+      window.removeEventListener("beforeunload", scrollToTop);
+    };
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
