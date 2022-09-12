@@ -134,7 +134,7 @@ const WhyItsUsefulSection: React.FC = () => {
             previousWindowScrollTop = 0;
             return;
           }
-          // Sometime scroll is to fast (big step) that sticky container is not in center of viewport
+          // Sometime scroll is too fast (big step) that sticky container is not in center of viewport
           // and this bit step doesn't apply to horizontal scroll of sticky container
           // So we need to apply it by additional checking
           // If we miss some scroll we need to call scrollHorizontaly until sticky container scroll is located at  very start or very end
