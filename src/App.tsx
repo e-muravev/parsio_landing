@@ -64,8 +64,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="xl">
-        <ResponsiveAppBar anchors={anchors} />
         <Box sx={{ maxWidth: 1536, margin: "0 auto" }}>
+          <ResponsiveAppBar anchors={anchors} />
           <Description />
           <HowItWorksSection />
           <RecognitionWaysSection />

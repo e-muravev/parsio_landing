@@ -64,6 +64,11 @@ const ResponsiveAppBar = ({ anchors }: any) => {
         boxShadow: "none",
         position: "fixed",
         p: 3,
+        maxWidth: 1536,
+        top: 0,
+        left: 0,
+        right: 0,
+        margin: "0 auto",
       }}
       position="fixed"
     >
@@ -130,7 +135,7 @@ const ResponsiveAppBar = ({ anchors }: any) => {
             <Typography
               key={page}
               sx={{
-                mr: 10,
+                mr: { xs: 5, lg: 10 },
                 cursor: "pointer",
                 "&:hover": {
                   color: "rgba(43, 80, 228, 1)",

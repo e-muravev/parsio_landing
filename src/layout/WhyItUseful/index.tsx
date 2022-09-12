@@ -19,12 +19,12 @@ function isInCenterOfViewport(element: HTMLElement | null) {
         Math.floor(
           window.innerHeight / 2 || document.documentElement.clientHeight / 2
         ) -
-          10 &&
+          50 &&
       Math.floor(rect.top + rect.height / 2) <
         Math.floor(
           window.innerHeight / 2 || document.documentElement.clientHeight / 2
         ) +
-          10) ||
+          50) ||
     (Math.floor(rect.top + rect.height / 2) ===
       Math.floor(
         window.innerHeight / 2 || document.documentElement.clientHeight / 2
@@ -127,7 +127,7 @@ const WhyItsUsefulSection: React.FC = () => {
         } else {
           if (
             ref.current.scrollLeft === 0 ||
-            ref.current.scrollLeft ===
+            Math.floor(ref.current.scrollLeft) ===
               ref.current.scrollWidth - ref.current.clientWidth
           ) {
             previousWindowScrollY = 0;
