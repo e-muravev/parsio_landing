@@ -4,6 +4,7 @@ import ResponsiveAppBar from "./layout/AppBar";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme, Typography, Box, Container, Grid } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import Description from "./layout/Description";
 import HowItWorksSection from "./layout/HowItWorks";
@@ -57,10 +58,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    window.screen.orientation.lock("portrait");
-  }, []);
-
-  useEffect(() => {
     // reset scroll after page reload
     const scrollToTop = () => window.scrollTo(0, 0);
 
@@ -71,20 +68,35 @@ function App() {
     };
   }, []);
 
+  const matches = useMediaQuery(
+    "(max-height:600px) and (orientation:landscape)"
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="xl">
         <Box sx={{ maxWidth: 1536, margin: "0 auto" }}>
           <ResponsiveAppBar anchors={anchors} />
-          <Description />
-          <HowItWorksSection />
-          <RecognitionWaysSection />
-          <WhyItsUsefulSection />
-          <WhatYouGetSection />
-          <UpdatesSection />
-          <SubscribeSection />
-          <ContactUsSection />
+          {matches ? (
+            <Box sx={{ mt: 15, textAlign: "justify" }}>
+              <Typography>
+                This type of orientation doesn't support. Please change to
+                portrait orientation.
+              </Typography>
+            </Box>
+          ) : (
+            <>
+              <Description />
+              <HowItWorksSection />
+              <RecognitionWaysSection />
+              <WhyItsUsefulSection />
+              <WhatYouGetSection />
+              <UpdatesSection />
+              <SubscribeSection />
+              <ContactUsSection />
+            </>
+          )}
         </Box>
       </Container>
     </ThemeProvider>

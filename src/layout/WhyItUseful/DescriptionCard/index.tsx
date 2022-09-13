@@ -31,7 +31,7 @@ const DescriptionCard: React.FC<DescriptionCardProps> = ({
         <Grid item xs={12} md={6}>
           <Box
             sx={{
-              textAlign: { xs: "center", md: "left" },
+              textAlign: "justify",
               position: "relative",
               top: "50%",
               transform: "translateY(-50%)",
@@ -43,6 +43,7 @@ const DescriptionCard: React.FC<DescriptionCardProps> = ({
                 fontWeight: 600,
                 pb: 2,
                 fontSize: { xs: 12, md: 24 },
+                textAlign: { xs: "center", md: "inherit" },
               }}
             >
               {title}

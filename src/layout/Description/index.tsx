@@ -4,11 +4,15 @@ import { ScreenSvg } from "../../images";
 
 const Description: React.FC = () => {
   return (
-    <Grid container spacing={5} sx={{ paddingTop: 25 }}>
+    <Grid
+      container
+      spacing={10}
+      sx={{ paddingTop: { xs: 18, md: 25 }, pl: 1, pr: 1 }}
+    >
       <Grid item xs={12} md={4} lg={4}>
         <Box
           sx={{
-            textAlign: { xs: "center", md: "left" },
+            textAlign: "justify",
             position: "relative",
             top: "50%",
             transform: "translateY(-50%)",
@@ -18,6 +22,8 @@ const Description: React.FC = () => {
             sx={{
               fontWeight: 700,
               color: "rgba(43, 80, 228, 1)",
+              pb: { xs: 6, md: 0 },
+              ml: "-2.5px",
             }}
             variant="h2"
           >
@@ -52,7 +58,7 @@ const Description: React.FC = () => {
                 position: "absolute",
                 left: "20%",
                 bottom: 20,
-                width: "50%",
+                width: { xs: "40%", md: "50%" },
               }}
             >
               <img

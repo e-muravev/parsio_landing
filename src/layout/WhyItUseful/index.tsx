@@ -18,7 +18,7 @@ const WhyItsUsefulSection: React.FC = () => {
   useHorizontalScrolling(ref);
 
   return (
-    <Box id="whyItsUseful" mt={{ xs: 20, md: 40 }}>
+    <Box id="whyItsUseful" p={1} mt={{ xs: 20, md: 40 }}>
       <Box>
         <Typography
           variant="h3"

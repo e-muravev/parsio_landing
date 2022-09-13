@@ -46,7 +46,9 @@ const WhatYouGetSection = () => {
         container
         sx={{
           paddingBottom: { xs: 5, md: 10 },
-          textAlign: { xs: "center", md: "left" },
+          textAlign: "justify",
+          pl: 1,
+          pr: 1,
         }}
         spacing={{ xs: 5, md: 25 }}
       >
@@ -69,7 +71,9 @@ const WhatYouGetSection = () => {
         container
         spacing={{ xs: 5, md: 25 }}
         sx={{
-          textAlign: { xs: "center", md: "left" },
+          textAlign: "justify",
+          pl: 1,
+          pr: 1,
         }}
       >
         {whatYouGetData.slice(2).map(({ idx, title, description }) => (

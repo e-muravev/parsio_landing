@@ -3,10 +3,15 @@ import { Typography, Box, Grid, TextField, Button } from "@mui/material";
 
 const SubscribeSection = () => {
   return (
-    <Box mt={30}>
+    <Box p={1} mt={30}>
       <Typography
         variant="h5"
-        sx={{ textAlign: "center", maxWidth: 850, margin: "0 auto" }}
+        sx={{
+          fontSize: { xs: 20, md: 24 },
+          textAlign: { xs: "justify", md: "center" },
+          maxWidth: 850,
+          margin: "0 auto",
+        }}
       >
         We are working on a Developer API to open an ability for integrations to
         our system. Stay tuned and subscribe to our newsletter!
@@ -14,15 +19,22 @@ const SubscribeSection = () => {
       <Grid
         sx={{ pt: 3 }}
         container
-        spacing={1}
+        spacing={2}
         justifyContent="center"
         alignItems="center"
       >
-        <Grid item>
-          <TextField label="Your email" variant="outlined" />
+        <Grid item xs={12} md="auto">
+          <TextField
+            sx={{ width: { xs: "100%", md: "auto" } }}
+            label="Your email"
+            variant="outlined"
+          />
         </Grid>
-        <Grid item>
-          <Button sx={{ width: "246px" }} variant="contained">
+        <Grid item xs={12} md="auto">
+          <Button
+            sx={{ width: { xs: "100%", md: "246px" } }}
+            variant="contained"
+          >
             Subscribe
           </Button>
         </Grid>

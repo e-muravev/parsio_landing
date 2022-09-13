@@ -35,7 +35,7 @@ const RecognitionWaysSection: React.FC = () => {
       <Grid
         container
         spacing={{ xs: 5, lg: 30 }}
-        sx={{ textAlign: { xs: "center", md: "left" } }}
+        sx={{ textAlign: "justify", p: 1 }}
       >
         {recognitionWays.map(({ idx, title, description }) => (
           <Grid item xs={12} md={6}>
