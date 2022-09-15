@@ -3,7 +3,7 @@ import { Typography, Box, Grid, TextField, Button } from "@mui/material";
 
 const SubscribeSection = () => {
   return (
-    <Box p={1} mt={30}>
+    <Box p={1} mt={{ xs: 2.5, md: 30 }}>
       <Typography
         variant="h5"
         sx={{
