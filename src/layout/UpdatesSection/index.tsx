@@ -61,7 +61,7 @@ const workSteps = [
 ];
 
 const UpdatesSection: React.FC = () => {
-  const isMobile = useMediaQuery("(max-width:900px)");
+  const isMobile = useMediaQuery("(max-width:899px)");
 
   return (
     <Box
